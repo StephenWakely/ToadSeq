@@ -13,7 +13,7 @@ typedef id(^SimpleTransform)(id value);
 typedef id(^Transform)(id value, BOOL *end);
 
 typedef id(^Fold)(id accumulator, id value);
-typedef BOOL(^Filter)(id value);
+typedef BOOL(^Predicate)(id value);
 
 @interface ToadSeq : NSObject
 
@@ -25,8 +25,9 @@ typedef BOOL(^Filter)(id value);
 
 -(ToadSeq *)map: (SimpleTransform) transform;
 -(ToadSeq *)foldl: (Fold) transform startingWith: (id) start;
--(ToadSeq *)filter: (Filter) predicate;
+-(ToadSeq *)filter: (Predicate) predicate;
 -(ToadSeq *)take: (int)howMany;
+-(ToadSeq *)takeWhile: (Predicate) predicate;
 
 @property (copy) Generator generator;
 

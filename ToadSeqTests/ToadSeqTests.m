@@ -93,7 +93,7 @@
     }];
     
     NSArray *arr = [seq toArray];
-    
+
     BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@2, @4, @6, @8, @10, nil]];
     STAssertTrue(e, @"Values should have the even numbers");
 }
@@ -108,6 +108,21 @@
     
     BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, @4, nil]];
     STAssertTrue(e, @"Values should have the first four numbers");
+}
+
+
+-(void) testTakeWhile {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators infiniteSequentialInts]];
+
+    // Take until we get to > 5.
+    [seq takeWhile: ^BOOL(NSNumber *num) {
+        return num.intValue <= 5;
+    }];
+    
+    NSArray *arr = [seq toArray];
+    
+    BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, @4, @5, nil]];
+    STAssertTrue(e, @"Values should have the first five numbers");
 }
 
 @end

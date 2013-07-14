@@ -106,7 +106,7 @@
 }
 
 
--(ToadSeq *)filter: (Filter) predicate {
+-(ToadSeq *)filter: (Predicate) predicate {
     // Capture the last generator in the sequence
     Generator gen = self.generator;
 
@@ -124,6 +124,8 @@
 }
 
 -(ToadSeq *)take: (int)howMany {
+    NSAssert(howMany >= 0, @"take called with negative amount");
+    
     // Capture the last generator in the sequence
     Generator gen = self.generator;
     __block int taken = 0;
@@ -132,15 +134,41 @@
         id value = gen(end);
         
         if (taken >= howMany) {
-            *end = true;
+            *end = YES;
             return nil;
         }
 
         taken++;
         return value;
     };
-    
+
     return self;
 }
+
+-(ToadSeq *)takeWhile: (Predicate) predicate {
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+    __block BOOL keepTaking = YES;
+
+    self.generator = ^id (BOOL *end) {
+        if (!keepTaking) {
+            *end = YES;
+            return nil;
+        }
+
+        id value = gen(end);
+
+        if (!predicate(value)) {
+            *end = YES;
+            keepTaking = NO;
+            return nil;
+        }
+
+        return value;
+    };
+
+    return self;
+}
+
 
 @end
