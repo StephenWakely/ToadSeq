@@ -8,7 +8,7 @@
 
 #import "ToadSeqTests.h"
 #import "ToadSeq.h"
-
+#import "TestGenerators.h"
 
 @implementation ToadSeqTests
 
@@ -24,34 +24,9 @@
     [super tearDown];
 }
 
--(Generator) threeSequentialInts {
-    __block int i = 1;
-    
-    return ^id(BOOL *end) {
-        if (i == 4) {
-            *end = YES;
-            return nil;
-        }
-
-        return @(i++);
-    };
-}
-
--(Generator) tenSequentialInts {
-    __block int i = 1;
-    
-    return ^id(BOOL *end) {
-        if (i == 11) {
-            *end = YES;
-            return nil;
-        }
-        
-        return @(i++);
-    };
-}
 
 -(void) testHasMore_GetNext {
-    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self threeSequentialInts]];
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
 
     STAssertTrue([seq hasMore], @"Should still have more in the sequence");
     STAssertEquals([[seq getNext] intValue], 1, @"First number should be 1");
@@ -64,7 +39,7 @@
 }
 
 -(void) testToArray {
-    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self threeSequentialInts]];
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
     NSArray *arr = [seq toArray];
 
     BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, nil]];
@@ -72,7 +47,7 @@
 }
 
 -(void) testMap {
-    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self threeSequentialInts]];
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
     [seq map: ^id(NSNumber *num) {
         return @(num.intValue * 2);
     }];
@@ -83,7 +58,7 @@
 }
 
 -(void) testFoldL {
-    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self threeSequentialInts]];
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
     [seq foldl: ^(NSNumber *accumulator, NSNumber *num) {
         return @(accumulator.intValue + num.intValue);
     } startingWith: 0 ];
@@ -94,7 +69,7 @@
 }
 
 -(void) testMapThenFoldL {
-    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self threeSequentialInts]];
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
 
     // The sum of the squares of the first three integer numbers
     [[seq map: ^id(NSNumber *num) {
@@ -110,7 +85,7 @@
 }
 
 -(void) testFilter {
-    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self tenSequentialInts]];
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators tenSequentialInts]];
 
     // Filter the even numbers
     [seq filter: ^BOOL(NSNumber *num)  {
@@ -123,5 +98,16 @@
     STAssertTrue(e, @"Values should have the even numbers");
 }
 
+
+-(void) testTake {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators infiniteSequentialInts]];
+    
+    [seq take: 4];
+    
+    NSArray *arr = [seq toArray];
+    
+    BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, @4, nil]];
+    STAssertTrue(e, @"Values should have the first four numbers");
+}
 
 @end

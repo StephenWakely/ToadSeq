@@ -10,7 +10,6 @@
 
 @interface ToadSeq()
 
-@property (copy) Generator generator;
 @property (weak) id cachedNext;
 @property (assign) BOOL nextValueCached;
 
@@ -124,5 +123,24 @@
     return self;
 }
 
+-(ToadSeq *)take: (int)howMany {
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+    __block int taken = 0;
+    
+    self.generator = ^id (BOOL *end) {
+        id value = gen(end);
+        
+        if (taken >= howMany) {
+            *end = true;
+            return nil;
+        }
+
+        taken++;
+        return value;
+    };
+    
+    return self;
+}
 
 @end

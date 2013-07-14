@@ -26,5 +26,8 @@ typedef BOOL(^Filter)(id value);
 -(ToadSeq *)map: (SimpleTransform) transform;
 -(ToadSeq *)foldl: (Fold) transform startingWith: (id) start;
 -(ToadSeq *)filter: (Filter) predicate;
+-(ToadSeq *)take: (int)howMany;
+
+@property (copy) Generator generator;
 
 @end

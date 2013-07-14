@@ -15,6 +15,7 @@
 		39700F361792EDD80085D706 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39700F341792EDD80085D706 /* InfoPlist.strings */; };
 		39700F441792EDFF0085D706 /* ToadSeq.m in Sources */ = {isa = PBXBuildFile; fileRef = 39700F431792EDFF0085D706 /* ToadSeq.m */; };
 		39700F471792EE2A0085D706 /* ToadSeqTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 39700F461792EE2A0085D706 /* ToadSeqTests.m */; };
+		39700F4A1792F49D0085D706 /* TestGenerators.m in Sources */ = {isa = PBXBuildFile; fileRef = 39700F491792F49D0085D706 /* TestGenerators.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		39700F431792EDFF0085D706 /* ToadSeq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToadSeq.m; sourceTree = "<group>"; };
 		39700F451792EE2A0085D706 /* ToadSeqTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToadSeqTests.h; sourceTree = "<group>"; };
 		39700F461792EE2A0085D706 /* ToadSeqTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToadSeqTests.m; sourceTree = "<group>"; };
+		39700F481792F49D0085D706 /* TestGenerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGenerators.h; sourceTree = "<group>"; };
+		39700F491792F49D0085D706 /* TestGenerators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGenerators.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 			children = (
 				39700F451792EE2A0085D706 /* ToadSeqTests.h */,
 				39700F461792EE2A0085D706 /* ToadSeqTests.m */,
+				39700F481792F49D0085D706 /* TestGenerators.h */,
+				39700F491792F49D0085D706 /* TestGenerators.m */,
 				39700F321792EDD80085D706 /* Supporting Files */,
 			);
 			path = ToadSeqTests;
@@ -250,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39700F471792EE2A0085D706 /* ToadSeqTests.m in Sources */,
+				39700F4A1792F49D0085D706 /* TestGenerators.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
