@@ -37,6 +37,19 @@
     };
 }
 
+-(Generator) tenSequentialInts {
+    __block int i = 1;
+    
+    return ^id(BOOL *end) {
+        if (i == 11) {
+            *end = YES;
+            return nil;
+        }
+        
+        return @(i++);
+    };
+}
+
 -(void) testHasMore_GetNext {
     ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self threeSequentialInts]];
 
@@ -97,8 +110,17 @@
 }
 
 -(void) testFilter {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [self tenSequentialInts]];
+
+    // Filter the even numbers
+    [seq filter: ^BOOL(NSNumber *num)  {
+        return num.intValue % 2 == 0;
+    }];
     
+    NSArray *arr = [seq toArray];
     
+    BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@2, @4, @6, @8, @10, nil]];
+    STAssertTrue(e, @"Values should have the even numbers");
 }
 
 

@@ -102,7 +102,27 @@
         accumulated = YES;
         return accum;
     };
+    
     return self;
 }
+
+
+-(ToadSeq *)filter: (Filter) predicate {
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+
+    self.generator = ^id (BOOL *end) {
+        id value = gen(end);
+        // Loop until we get to the end or satisfy the predicate.
+        while (!*end && !predicate(value)) {
+            value = gen(end);
+        }
+        
+        return *end ? nil : value;
+    };
+    
+    return self;
+}
+
 
 @end
