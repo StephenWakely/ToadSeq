@@ -11,23 +11,54 @@
 typedef id(^Generator)(BOOL *end);
 typedef id(^SimpleTransform)(id value);
 typedef id(^Transform)(id value, BOOL *end);
-
+typedef void(^Action) (id value);
 typedef id(^Fold)(id accumulator, id value);
 typedef BOOL(^Predicate)(id value);
 
 @interface ToadSeq : NSObject
 
+
+/*
+ Initialise the sequence with a Generator.
+
+ A generator is a block of type ^id(BOOL *end).
+*/
 -(id) initWithGenerator: (Generator) generator;
 -(BOOL) hasMore;
 -(id) getNext;
 
+/*
+ Returns an array containing the results of the sequence.
+ Do not call for infinite sequences - it will never return (but will run out of memory).
+ */
 -(NSArray *) toArray;
 
+/*
+ Loops over the sequence and calls the action block, presumably for sideeffects.
+ */
+-(void) forEach: (Action) action;
+
+
 -(ToadSeq *)map: (SimpleTransform) transform;
+
+/*
+ Folds from the left of the sequence.
+ The accumulator starts as the startWith parameter passed in.
+*/
 -(ToadSeq *)foldl: (Fold) transform startingWith: (id) start;
+
+/*
+ Folds from the left of the sequence.
+ The accumulator starts with the first item in the sequence
+*/
+-(ToadSeq *)foldl: (Fold) transform;
+
 -(ToadSeq *)filter: (Predicate) predicate;
 -(ToadSeq *)take: (int)howMany;
 -(ToadSeq *)takeWhile: (Predicate) predicate;
+-(ToadSeq *)concatWith: (ToadSeq *)seq;
+
+
 
 @property (copy) Generator generator;
 

@@ -10,7 +10,7 @@
 
 @interface ToadSeq()
 
-@property (weak) id cachedNext;
+@property (strong) id cachedNext;
 @property (assign) BOOL nextValueCached;
 
 @property (strong) NSMutableArray *transforms;
@@ -52,16 +52,24 @@
 
 
 -(NSArray *) toArray {
-    BOOL end = NO;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
+    [self forEach:^(id value) {
+        [arr addObject: value];
+    }];
+    
+    return arr;
+}
+
+-(void) forEach: (Action) action {
+    BOOL end = NO;
     
     id next = self.generator(&end);
     while (!end) {
-        [arr addObject: next];
+        action(next);
         next = self.generator(&end);
     }
     
-    return arr;
 }
 
 
@@ -105,6 +113,34 @@
     return self;
 }
 
+-(ToadSeq *)foldl:(Fold)transform {
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+    __block BOOL accumulated = NO;
+    
+    self.generator = ^id (BOOL *end) {
+        if (accumulated || *end) {
+            // We've already done the accumulation.
+            *end = YES;
+            return nil;
+        }
+        
+        BOOL e = NO;
+        // Get the first element to start with.
+        id accum = gen(&e);
+        while (!e) {
+            id value = gen(&e);
+            if (!e)
+                accum = transform(accum, value);
+        }
+        
+        accumulated = YES;
+        return accum;
+    };
+    
+    
+    return self;
+}
 
 -(ToadSeq *)filter: (Predicate) predicate {
     // Capture the last generator in the sequence
@@ -164,6 +200,23 @@
             return nil;
         }
 
+        return value;
+    };
+
+    return self;
+}
+
+-(ToadSeq *)concatWith: (ToadSeq *)seq {
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+
+    self.generator = ^id (BOOL *end) {
+        id value = gen(end);
+        if (*end) {
+            *end = NO;
+            value = seq.generator(end);
+        }
+        
         return value;
     };
 
