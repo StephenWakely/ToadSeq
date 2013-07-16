@@ -46,6 +46,18 @@
     STAssertTrue(e, @"Arrays should match");
 }
 
+-(void) testForEach {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
+    NSMutableArray *test = [[NSMutableArray alloc] initWithCapacity: 3];
+    [seq forEach:^(id value) {
+        [test addObject: value];
+    }];
+
+    BOOL e = [test isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, nil]];
+    STAssertTrue(e, @"Arrays should match");
+    
+}
+
 -(void) testMap {
     ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
     [seq map: ^id(NSNumber *num) {
@@ -61,11 +73,22 @@
     ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
     [seq foldl: ^(NSNumber *accumulator, NSNumber *num) {
         return @(accumulator.intValue + num.intValue);
-    } startingWith: 0 ];
+    } ];
     
     NSArray *arr = [seq toArray];
     BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@6, nil]];
     STAssertTrue(e, @"Values should accumulate to 6");
+}
+
+-(void) testFoldLWithStart {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
+    [seq foldl: ^(NSNumber *accumulator, NSNumber *num) {
+        return @(accumulator.intValue + num.intValue);
+    } startingWith: @50 ];
+    
+    NSArray *arr = [seq toArray];
+    BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@56, nil]];
+    STAssertTrue(e, @"Values should accumulate to 56");
 }
 
 -(void) testMapThenFoldL {
@@ -124,5 +147,18 @@
     BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, @4, @5, nil]];
     STAssertTrue(e, @"Values should have the first five numbers");
 }
+
+-(void) testConcat {
+    ToadSeq *seq1 = [[ToadSeq alloc] initWithGenerator: [TestGenerators infiniteSequentialInts]];
+    ToadSeq *seq2 = [[ToadSeq alloc] initWithGenerator: [TestGenerators infiniteSequentialInts]];
+    
+    [[seq1 take: 5] concatWith: [seq2 take: 3]];
+    
+    NSArray *arr = [seq1 toArray];
+    
+    BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, @4, @5, @1, @2, @3, nil]];
+    STAssertTrue(e, @"Values were %@", [arr componentsJoinedByString:@","]);
+}
+
 
 @end

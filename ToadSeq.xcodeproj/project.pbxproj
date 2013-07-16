@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39318E3C1793CC91005C6FBE /* ToadGenerators.m in Sources */ = {isa = PBXBuildFile; fileRef = 39318E3B1793CC91005C6FBE /* ToadGenerators.m */; };
+		39318E3D1793CC91005C6FBE /* ToadGenerators.m in Sources */ = {isa = PBXBuildFile; fileRef = 39318E3B1793CC91005C6FBE /* ToadGenerators.m */; };
+		39318E401793CE83005C6FBE /* GeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 39318E3F1793CE83005C6FBE /* GeneratorTests.m */; };
 		39700F1B1792EDD80085D706 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39700F1A1792EDD80085D706 /* Foundation.framework */; };
 		39700F2A1792EDD80085D706 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39700F291792EDD80085D706 /* SenTestingKit.framework */; };
 		39700F2C1792EDD80085D706 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39700F2B1792EDD80085D706 /* UIKit.framework */; };
@@ -41,6 +44,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39318E3A1793CC91005C6FBE /* ToadGenerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToadGenerators.h; sourceTree = "<group>"; };
+		39318E3B1793CC91005C6FBE /* ToadGenerators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToadGenerators.m; sourceTree = "<group>"; };
+		39318E3E1793CE83005C6FBE /* GeneratorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratorTests.h; sourceTree = "<group>"; };
+		39318E3F1793CE83005C6FBE /* GeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratorTests.m; sourceTree = "<group>"; };
 		39700F171792EDD80085D706 /* libToadSeq.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libToadSeq.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		39700F1A1792EDD80085D706 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		39700F1E1792EDD80085D706 /* ToadSeq-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToadSeq-Prefix.pch"; sourceTree = "<group>"; };
@@ -115,6 +122,8 @@
 				39700F421792EDFF0085D706 /* ToadSeq.h */,
 				39700F431792EDFF0085D706 /* ToadSeq.m */,
 				39700F1D1792EDD80085D706 /* Supporting Files */,
+				39318E3A1793CC91005C6FBE /* ToadGenerators.h */,
+				39318E3B1793CC91005C6FBE /* ToadGenerators.m */,
 			);
 			path = ToadSeq;
 			sourceTree = "<group>";
@@ -135,6 +144,8 @@
 				39700F481792F49D0085D706 /* TestGenerators.h */,
 				39700F491792F49D0085D706 /* TestGenerators.m */,
 				39700F321792EDD80085D706 /* Supporting Files */,
+				39318E3E1793CE83005C6FBE /* GeneratorTests.h */,
+				39318E3F1793CE83005C6FBE /* GeneratorTests.m */,
 			);
 			path = ToadSeqTests;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39700F441792EDFF0085D706 /* ToadSeq.m in Sources */,
+				39318E3C1793CC91005C6FBE /* ToadGenerators.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +268,8 @@
 			files = (
 				39700F471792EE2A0085D706 /* ToadSeqTests.m in Sources */,
 				39700F4A1792F49D0085D706 /* TestGenerators.m in Sources */,
+				39318E3D1793CC91005C6FBE /* ToadGenerators.m in Sources */,
+				39318E401793CE83005C6FBE /* GeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +421,7 @@
 				39700F3E1792EDD80085D706 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39700F3F1792EDD80085D706 /* Build configuration list for PBXNativeTarget "ToadSeqTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +430,7 @@
 				39700F411792EDD80085D706 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

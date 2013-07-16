@@ -24,7 +24,15 @@ typedef BOOL(^Predicate)(id value);
  A generator is a block of type ^id(BOOL *end).
 */
 -(id) initWithGenerator: (Generator) generator;
+
+/*
+ Return YES if there are more elements available in the sequence.
+*/
 -(BOOL) hasMore;
+
+/*
+ Returns the next element of the sequence.
+*/
 -(id) getNext;
 
 /*
@@ -38,7 +46,9 @@ typedef BOOL(^Predicate)(id value);
  */
 -(void) forEach: (Action) action;
 
-
+/*
+ Transform all the elements of the sequence to the values transformed by the action.
+*/
 -(ToadSeq *)map: (SimpleTransform) transform;
 
 /*
@@ -53,9 +63,24 @@ typedef BOOL(^Predicate)(id value);
 */
 -(ToadSeq *)foldl: (Fold) transform;
 
+/*
+ Remove all the items from the sequence where the predicate returns false.
+*/
 -(ToadSeq *)filter: (Predicate) predicate;
+
+/*
+ Return only the first n elements from the sequence.
+*/
 -(ToadSeq *)take: (int)howMany;
+
+/*
+ Continue returning elements from the sequence until the predicate returns false.
+ */
 -(ToadSeq *)takeWhile: (Predicate) predicate;
+
+/*
+ Concatenate this sequence with the given one.
+*/
 -(ToadSeq *)concatWith: (ToadSeq *)seq;
 
 
