@@ -83,6 +83,13 @@ typedef BOOL(^Predicate)(id value);
 */
 -(ToadSeq *)concatWith: (ToadSeq *)seq;
 
+/*
+    Reverses the sequence. Be careful with this one as the whole sequence has
+    to be loaded into memory in order to reverse it. 
+ 
+    Will NOT work with infinite sequences.
+*/
+-(ToadSeq *)reverse;
 
 
 @property (copy) Generator generator;

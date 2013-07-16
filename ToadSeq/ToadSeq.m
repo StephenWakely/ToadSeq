@@ -15,6 +15,9 @@
 
 @property (strong) NSMutableArray *transforms;
 
+-(NSArray *) toArrayFromGenerator: (Generator)gen;
+-(void) forEach:(Action)action fromGenerator: (Generator)gen;
+
 @end
 
 
@@ -50,6 +53,15 @@
     return end ? nil : next;
 }
 
+-(NSArray *) toArrayFromGenerator: (Generator)gen {
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
+    [self forEach:^(id value)  {
+        [arr addObject: value];
+    } fromGenerator: gen];
+    
+    return arr;
+}
 
 -(NSArray *) toArray {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
@@ -61,15 +73,19 @@
     return arr;
 }
 
--(void) forEach: (Action) action {
+
+-(void) forEach:(Action)action fromGenerator: (Generator)gen {
     BOOL end = NO;
     
-    id next = self.generator(&end);
+    id next = gen(&end);
     while (!end) {
         action(next);
-        next = self.generator(&end);
+        next = gen(&end);
     }
-    
+}
+
+-(void) forEach: (Action) action {
+    [self forEach:action fromGenerator: self.generator];
 }
 
 
@@ -223,5 +239,31 @@
     return self;
 }
 
+-(ToadSeq *)reverse {
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+    __block NSArray *store = nil;
+    __block int index;
+
+    // Need to create a weak reference to myself to save a retain cycle
+    __weak typeof (self) weakMe = self;
+
+    self.generator = ^id (BOOL *end) {
+        if (store == nil) {
+            // Chuck the data from the pipeline so far into an array
+            store = [weakMe toArrayFromGenerator: gen];
+            index = store.count - 1;
+        }
+
+        if (index < 0) {
+            *end = YES;
+            return nil;
+        }
+        
+        return store[index--];
+    };
+    
+    return self;
+}
 
 @end
