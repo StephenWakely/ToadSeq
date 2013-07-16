@@ -51,7 +51,8 @@ It all works with arrays. Lets capitalize all the words of a sentence:
         return [word capitalizedString];
     }];
     
-    STAssertTrue([[[seq toArray] componentsJoinedByString:@" "] isEqualToString: @"I Love To Boogy"], @"String should be capitalized" );
+    NSString *newSentence = [[seq toArray] componentsJoinedByString:@" "];
+    STAssertTrue([newSentence isEqualToString: @"I Love To Boogy"], @"String should be capitalized" );
 
 
 ## Generators
