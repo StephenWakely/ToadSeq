@@ -9,6 +9,7 @@
 #import "ToadSeqTests.h"
 #import "ToadSeq.h"
 #import "TestGenerators.h"
+#import "ToadGenerators.h"
 
 @implementation ToadSeqTests
 
@@ -155,9 +156,43 @@
     [[seq1 take: 5] concatWith: [seq2 take: 3]];
     
     NSArray *arr = [seq1 toArray];
-    
     BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@1, @2, @3, @4, @5, @1, @2, @3, nil]];
     STAssertTrue(e, @"Values were %@", [arr componentsJoinedByString:@","]);
+}
+
+-(void) testSumFirstTenSquares {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
+    [[[seq take: 10]
+           map:^id(NSNumber *value) {
+             return @(value.intValue * value.intValue);
+        }]
+          foldl:^id(NSNumber *accumulator, NSNumber *value) {
+              return @(accumulator.intValue + value.intValue);
+        }];
+
+    STAssertTrue([seq hasMore], @"Should have one item");
+    STAssertEquals([[seq getNext] intValue], 385, @"We need the sum of the squares here");
+}
+
+-(void) testReverse {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators threeSequentialInts]];
+    [seq reverse];
+    
+    NSArray *arr = [seq toArray];
+    BOOL e = [arr isEqualToArray: [NSArray arrayWithObjects:@3, @2, @1, nil]];
+    STAssertTrue(e, @"Values were %@", [arr componentsJoinedByString:@","]);    
+}
+
+-(void) testStringArrays {
+    NSString *sentence = @"I love to boogy";
+    NSArray *arr = [sentence componentsSeparatedByString: @" "];
+    
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators NSArraySeq: arr]];
+    [seq map:^NSString *(NSString *word) {
+        return [word capitalizedString];
+    }];
+    
+    STAssertTrue([[[seq toArray] componentsJoinedByString:@" "] isEqualToString: @"I Love To Boogy"], @"String should be capitalized" );
 }
 
 
