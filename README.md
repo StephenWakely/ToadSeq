@@ -24,15 +24,15 @@ A generator that returns the first five integers can be created like :
 
 A number of generators have been pre-defined in ToadGenerators.h :
 
-   [ToadGenerators infiniteSequentialInts]
+    [ToadGenerators infiniteSequentialInts]
 
 Creates an infinite sequence of integers.
 
-   [ToadGenerators NSArraySeq: array]
+    [ToadGenerators NSArraySeq: array]
  
 Creates a sequence containing the elements of the passed in array.
 
-   [ToadGenerators NSDictionarySeq: dict]
+    [ToadGenerators NSDictionarySeq: dict]
 
 Creates a sequence containing the keys of the passed in dictionary.
 
