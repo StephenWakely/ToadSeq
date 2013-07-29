@@ -35,6 +35,14 @@
 //
 +(Generator) infiniteSequentialInts;
 
+
+////
+//
+// Returns a seqence of integers between from and to.
+//
+//
++(Generator) rangeFrom:(int) from to:(int) to;
+
 ////
 //
 // Returns a sequence of the elements of the array.

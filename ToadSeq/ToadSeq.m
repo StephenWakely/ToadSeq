@@ -23,6 +23,12 @@
 
 @implementation ToadSeq
 
+
++(ToadSeq *)withGenerator: (Generator) generator {
+    return [[ToadSeq alloc] initWithGenerator: generator];
+}
+
+
 -(id)initWithGenerator: (Generator) generator {
     if ( self = [super init]) {
         self.generator = generator;
@@ -246,7 +252,8 @@
     __block int index;
 
     // Need to create a weak reference to myself to save a retain cycle
-    __weak typeof (self) weakMe = self;
+    //__weak TODO : Earlier IOS versions don't like weak.
+    ToadSeq *weakMe = self;
 
     self.generator = ^id (BOOL *end) {
         if (store == nil) {

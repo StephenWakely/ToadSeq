@@ -18,6 +18,8 @@ typedef BOOL(^Predicate)(id value);
 @interface ToadSeq : NSObject
 
 
++(ToadSeq *)withGenerator: (Generator) generator;
+
 /*
  Initialise the sequence with a Generator.
 

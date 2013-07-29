@@ -19,6 +19,19 @@
     };
 }
 
++(Generator) rangeFrom:(int) from to:(int) to {
+    __block int i = from;
+    
+    return ^id(BOOL *end) {
+        if (i > to) {
+            *end = YES;
+            return nil;
+        }
+        return @(i++);
+    };
+    
+}
+
 
 +(Generator) NSArraySeq: (NSArray *) arr {
     __block int idx = 0;
