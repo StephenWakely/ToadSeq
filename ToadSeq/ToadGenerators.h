@@ -55,4 +55,11 @@
 //
 +(Generator) NSDictionarySeq: (NSDictionary *)dict;
 
+
+////
+//
+// Returns an infinite (subject to memory and time) sequence of prime numbers
+//
++(Generator) Primes;
+
 @end

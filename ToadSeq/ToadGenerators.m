@@ -32,7 +32,6 @@
     
 }
 
-
 +(Generator) NSArraySeq: (NSArray *) arr {
     __block int idx = 0;
     
@@ -57,5 +56,33 @@
     };
 }
 
+
++(Generator) Primes {
+    NSMutableDictionary *nonprimes = [[NSMutableDictionary alloc] init];
+    __block int next = 1;
+ 
+    return ^id(BOOL *end) {
+        while (true) {
+            next++;
+
+            NSNumber *p = nonprimes[@(next)];
+            
+            if (!p) {
+                // next is not a key, so must be prime - add it's square to the dictionary
+                nonprimes[@(next * next)] = @(next);
+                *end = NO;
+                return @(next);
+            }
+            
+            // Find the next composite number.
+            NSNumber *c = @(next + p.intValue);
+            while  (nonprimes[c])
+                c = @(c.intValue + p.intValue);
+            
+            nonprimes[c] = p;
+            
+        }
+    };
+}
 
 @end

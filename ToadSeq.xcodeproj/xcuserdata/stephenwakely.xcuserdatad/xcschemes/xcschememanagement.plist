@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ToadSeqExamples.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3951AD7517AD0A76006FE4CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>39700F161792EDD80085D706</key>
 		<dict>
 			<key>primary</key>
