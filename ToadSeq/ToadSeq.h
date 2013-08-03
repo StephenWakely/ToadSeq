@@ -71,6 +71,11 @@ typedef BOOL(^Predicate)(id value);
 -(ToadSeq *)filter: (Predicate) predicate;
 
 /*
+ Ignore the first n elements from the sequence
+ */
+-(ToadSeq *)skip: (int)howMany;
+
+/*
  Return only the first n elements from the sequence.
 */
 -(ToadSeq *)take: (int)howMany;

@@ -35,15 +35,20 @@ void Euler1 ()
     printf("Euler 1: %d\n", result);
 }
 
+void Euler7 ()
+{
+    int result = [[[[ToadSeq withGenerator: [ToadGenerators Primes]]
+                    skip: 10000] getNext] intValue];
+    
+    printf("Euler 7: %d\n", result);
+}
+
 
 int main(int argc, const char * argv[])
 {
-    [[[ToadSeq withGenerator: [ToadGenerators Primes]]
-        take: 10001]
-        forEach:^(NSNumber* value) {
-            printf("%d, ", value.intValue);
-     }];
-        
+    Euler1();
+    Euler7();
+    
     return 0;
 }
 

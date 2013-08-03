@@ -203,6 +203,26 @@
     return self;
 }
 
+
+-(ToadSeq *)skip: (int)howMany {
+    NSAssert(howMany >= 0, @"skip called with negative amount");
+    
+    // Capture the last generator in the sequence
+    Generator gen = self.generator;
+    __block int skipped = 0;
+    
+    self.generator = ^id (BOOL *end) {
+        while (skipped < howMany) {
+            gen(end);
+            skipped++;
+        }
+
+        return gen(end);
+    };
+    
+    return self;
+}
+
 -(ToadSeq *)takeWhile: (Predicate) predicate {
     // Capture the last generator in the sequence
     Generator gen = self.generator;

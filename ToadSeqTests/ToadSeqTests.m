@@ -122,6 +122,13 @@
     STAssertTrue(e, @"Values should have the even numbers");
 }
 
+-(void) testSkip {
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators infiniteSequentialInts]];
+
+    [seq skip:5];
+    
+    STAssertEquals(@6, [seq getNext], @"Should have skipped the first 5 integers");
+}
 
 -(void) testTake {
     ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [TestGenerators infiniteSequentialInts]];
