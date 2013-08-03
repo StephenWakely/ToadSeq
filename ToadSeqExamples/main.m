@@ -12,10 +12,10 @@
 #import "ToadGenerators.h"
 
 
-void Euler1 ()
+void SumOfFactors ()
 {
     // Start with all numbers between 1 and 999
-    int result = [[[[[ToadSeq withGenerator: [ToadGenerators rangeFrom:1 to:999]]
+    int result = [[[[[ToadSeq withGenerator: [ToadGenerators rangeFrom:1 to:49999]]
                   
                     // Take only multiples of 3 or 5
                     filter:^BOOL(NSNumber *value) {
@@ -32,22 +32,22 @@ void Euler1 ()
     
     
     // insert code here...
-    printf("Euler 1: %d\n", result);
+    printf("Sum of factors of 5 and 7 between 1 and 50000 : %d\n", result);
 }
 
-void Euler7 ()
+void NthPrimeNumber ()
 {
     int result = [[[[ToadSeq withGenerator: [ToadGenerators Primes]]
-                    skip: 10000] getNext] intValue];
+                    skip: 518238] getNext] intValue];
     
-    printf("Euler 7: %d\n", result);
+    printf("518239th prime number: %d\n", result);
 }
 
 
 int main(int argc, const char * argv[])
 {
-    Euler1();
-    Euler7();
+    SumOfFactors();
+    NthPrimeNumber();
     
     return 0;
 }
