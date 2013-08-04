@@ -1,11 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC
-    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
-    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
-<html xmlns:svg='http://www.w3.org/2000/svg' xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>
-<head><meta content='application/xhtml+xml;charset=utf-8' http-equiv='Content-type' /><title>ToadSeq</title></head>
-<body>
-<h1 id='toadseq'>ToadSeq</h1>
 
 <p>ToadSeq is a small iOS library for generating and manipulating lazy sequences within Objective C.</p>
 
@@ -15,7 +7,9 @@
 
 <p>To get an array of even numbers &lt; 100 :</p>
 
-<pre><code>// Initialise the sequence with an infinite sequence on integers
+<pre><code>
+{% highlight objectivec %}
+// Initialise the sequence with an infinite sequence on integers
 ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
 
 // Take the first 100 integers.
@@ -26,11 +20,16 @@ ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSeque
     }];
 
 // Convert the sequence to an array
-NSArray *arr = [seq toArray];</code></pre>
+NSArray *arr = [seq toArray];
+{% endhighlight %}
+
+</code></pre>
 
 <p>Transformations can be chained as much as needed, to get the sum of the square of the first 100 integers :</p>
 
-<pre><code>// Take the first 100 integers.
+<pre><code>
+{% highlight objectivec %}
+// Take the first 100 integers.
 [[[[seq take: 100]
      // Filter out all the integers that aren&#39;t even
      filter: ^BOOL(NSNumber *num)  {
@@ -43,11 +42,16 @@ NSArray *arr = [seq toArray];</code></pre>
     // Fold the sequence down into the sum of all the elements
     foldl: ^id(NSNumber *accumulator, NSNumber *value) {
           return @(accumulator.intvalue + value.intValue);
-    }];</code></pre>
+    }];
+{% endhighlight %}
+</code></pre>
 
 <p>It all works with arrays. Lets capitalize all the words of a sentence:</p>
 
-<pre><code>NSString *sentence = @&quot;I love to boogy&quot;;
+<pre><code>
+
+{% highlight objectivec %}
+NSString *sentence = @&quot;I love to boogy&quot;;
 NSArray *arr = [sentence componentsSeparatedByString: @&quot; &quot;];
 
 // Create a sequence with the contents of our array
@@ -58,7 +62,9 @@ ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators NSArraySeq: a
 }];
 
 NSString *newSentence = [[seq toArray] componentsJoinedByString:@&quot; &quot;];
-STAssertTrue([newSentence isEqualToString: @&quot;I Love To Boogy&quot;], @&quot;String should be capitalized&quot; );</code></pre>
+STAssertTrue([newSentence isEqualToString: @&quot;I Love To Boogy&quot;], @&quot;String should be capitalized&quot; );
+{% endhighlight %}
+</code></pre>
 
 <h2 id='generators'>Generators</h2>
 
@@ -66,7 +72,9 @@ STAssertTrue([newSentence isEqualToString: @&quot;I Love To Boogy&quot;], @&quot
 
 <p>A generator that returns the first five integers can be created like :</p>
 
-<pre><code>+(Generator) firstFiveInts {
+<pre><code>
+{% highlight objectivec %}
++(Generator) firstFiveInts {
     __block int i = 1;
 
     return ^id(BOOL *end) {
@@ -77,16 +85,32 @@ STAssertTrue([newSentence isEqualToString: @&quot;I Love To Boogy&quot;], @&quot
 
         return @(i++);
     };
-}</code></pre>
+}
+{% endhighlight %}
+</code></pre>
 
 <p>A number of generators have been pre-defined in ToadGenerators.h :</p>
 
 <ul>
-<li><code>[ToadGenerators infiniteSequentialInts]</code> Creates an infinite sequence of integers.</li>
+  <li><code>
+{% highlight objectivec %}
+[ToadGenerators infiniteSequentialInts]
+{% endhighlight %}
+</code> Creates an infinite sequence of integers.
+</li>
 
-<li><code>[ToadGenerators NSArraySeq: array]</code> Creates a sequence containing the elements of the passed in array.</li>
+<li><code>
+{% highlight objectivec %}
+[ToadGenerators NSArraySeq: array]
+{% endhighlight %}
+</code> Creates a sequence containing the elements of the passed in array.</li>
 
-<li><code>[ToadGenerators NSDictionarySeq: dict]</code> Creates a sequence containing the keys of the passed in dictionary.</li>
+<li><code>
+{% highlight objectivec %}
+[ToadGenerators NSDictionarySeq: dict]
+{% endhighlight %}
+</code> Creates a sequence containing the keys of the passed in dictionary.
+</li>
 </ul>
 
 <h2 id='transformations'>Transformations</h2>
@@ -95,14 +119,22 @@ STAssertTrue([newSentence isEqualToString: @&quot;I Love To Boogy&quot;], @&quot
 
 <p>To create a sequence of even numbers use <code>map</code> :</p>
 
-<pre><code>ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
+<pre><code>
+{% highlight objectivec %}
+ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
 [seq map: ^id(NSNumber *num) {
     return @(num.intValue * 2);
-}];</code></pre>
+}];
+{% endhighlight %}
+</code></pre>
+
 
 <p>Transformations can be chained. To get the sum of the first 10 square numbers using take, map and foldl:</p>
 
-<pre><code>ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
+<pre><code>
+
+{% highlight objectivec %}
+ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
 [[[seq take: 10]
        map:^id(NSNumber *value) {
          return @(value.intValue * value.intValue);
@@ -112,7 +144,9 @@ STAssertTrue([newSentence isEqualToString: @&quot;I Love To Boogy&quot;], @&quot
     }];
 
 STAssertTrue([seq hasMore], @&quot;Should have one item&quot;);
-STAssertEquals([[seq getNext] intValue], 385, @&quot;We need the sum of the squares here&quot;);</code></pre>
+STAssertEquals([[seq getNext] intValue], 385, @&quot;We need the sum of the squares here&quot;);
+{% endhighlight %}
+</code></pre>
 
 <h2 id='pulling_the_data'>Pulling the data</h2>
 
@@ -125,4 +159,5 @@ STAssertEquals([[seq getNext] intValue], 385, @&quot;We need the sum of the squa
 <p><code>[seq toArray]</code> - Pulls the whole sequence out into an array.</p>
 
 <p><code>[seq forEach:]</code> - Passes each element of the sequence into a block.</p>
-</body></html>
+
+

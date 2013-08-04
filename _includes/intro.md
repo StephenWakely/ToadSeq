@@ -1,4 +1,3 @@
-# ToadSeq
 
 ToadSeq is a small iOS library for generating and manipulating lazy sequences within Objective C.
 
