@@ -6,8 +6,8 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 var yeomanConfig = {
-  app: 'gh-pages',
-  dist: 'dist'
+  app: 'src',
+  dist: 'gh-pages'
 };
 
 // Directory reference:
@@ -110,9 +110,8 @@ module.exports = function (grunt) {
         // require: ['singularity', 'jacket'],
         bundleExec: true,
         sassDir: '<%= yeoman.app %>/_scss',
-        cssDir: '.tmp/css',
-        imagesDir: '<%= yeoman.app %>/img',
-        fontsDir: '<%= yeoman.app %>/fonts',
+        cssDir: '<%= yeoman.app %>/css',
+        imagesDir: '<%= yeoman.app %>/img', fontsDir: '<%= yeoman.app %>/fonts',
         javascriptsDir: '<%= yeoman.app %>/js',
         relativeAssets: false,
         httpImagesPath: '/img',
