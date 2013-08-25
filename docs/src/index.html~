@@ -1,0 +1,12 @@
+---
+layout: default
+title: Toadseq library
+---
+
+<div id="intro">
+  <div class='container'>
+  <div>
+    {% include intro.html %}
+  </div>
+  </div>
+</div>

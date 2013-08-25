@@ -6,8 +6,8 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 var yeomanConfig = {
-  app: 'app',
-  dist: 'dist'
+  app: 'src',
+  dist: 'gh-pages'
 };
 
 // Directory reference:

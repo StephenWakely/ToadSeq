@@ -1,0 +1,958 @@
+[4mRunning "clean:server" (clean) task[24m
+Cleaning ".tmp"...[32mOK[39m
+
+[4mRunning "compass:server" (compass) task[24m
+[32mdirectory[0m .tmp/css/ 
+[31m[0m[32m   create[0m .tmp/css/main.css 
+[31m[0m[32m   create[0m .tmp/css/syntax.css 
+
+[4mRunning "jshint:report" (jshint) task[24m
+[32m>> [39m1 file lint free.
+
+[4mRunning "csscss:report" (csscss) task[24m
+app/_scss/main.scss
+{.post code} AND {.post pre} share 2 rules
+  - background-color: #eef
+  - border: 1px solid #ddd
+
+app/_scss/syntax.scss
+{.highlight .cp} AND {.highlight .cs} share 2 rules
+  - color: #999999
+  - font-weight: bold
+{.highlight .kt} AND {.highlight .nc} share 2 rules
+  - color: #445588
+  - font-weight: bold
+{.highlight .ne} AND {.highlight .nf} share 2 rules
+  - color: #990000
+  - font-weight: bold
+{.highlight .c}, {.highlight .c1} AND {.highlight .cm} share 2 rules
+  - color: #999988
+  - font-style: italic
+
+
+[4mRunning "csslint:report" (csslint) task[24m
+[32m>> [39m2 files lint free.
+
+[4mRunning "clean:dist" (clean) task[24m
+Cleaning ".tmp"...[32mOK[39m
+Cleaning "dist/css"...[32mOK[39m
+Cleaning "dist/index.html"...[32mOK[39m
+Cleaning "dist/jekyll"...[32mOK[39m
+Cleaning "dist/js"...[32mOK[39m
+
+[4mRunning "jekyll:dist" (jekyll) task[24m
+`bundle exec jekyll build --source app --destination dist --config _config.yml,_config.build.yml` was initiated.
+
+Jekyll output:
+Configuration file: _config.yml
+Configuration file: _config.build.yml
+            Source: app
+       Destination: dist
+      Generating... done.
+
+[4mRunning "concurrent:dist" (concurrent) task[24m
+    
+    [4mRunning "copy:dist" (copy) task[24m
+    
+    
+    [32mDone, without errors.[39m
+        
+    [4mRunning "compass:dist" (compass) task[24m
+    [32mdirectory[0m .tmp/css/ 
+    [31m[0m[32m   create[0m .tmp/css/main.css 
+    [31m[0m[32m   create[0m .tmp/css/syntax.css 
+    
+    [32mDone, without errors.[39m
+    
+[4mRunning "useminPrepare:html" (useminPrepare) task[24m
+Going through [36mdist/index.html[39m to update the config
+Looking for build script HTML comment blocks
+
+[1mFound a block:[22m
+[36m        <!-- build:css({app,.tmp}) /css/main.css -->[39m
+[36m        <!-- Syntax highlighting CSS -->[39m
+[36m        <link rel="stylesheet" href="/css/syntax.css">[39m
+[36m[39m
+[36m        <!-- Custom CSS -->[39m
+[36m        <link rel="stylesheet" href="/css/main.css">[39m
+[36m        <!-- endbuild -->[39m
+Updating config with the following assets:
+    - [36m{app,.tmp}/css/syntax.css[39m
+    - [36m{app,.tmp}/css/main.css[39m
+
+[1mFound a block:[22m
+[36m    <!-- build:js(app) /js/scripts.js -->[39m
+[36m    <script src="/js/main.js"></script>[39m
+[36m    <!-- endbuild -->[39m
+Updating config with the following assets:
+    - [36mapp/js/main.js[39m
+
+[1mConfiguration is now:[22m
+
+[1m  cssmin:[22m
+  { dist: { options: { report: [32m'gzip'[39m } },
+  [32m'dist/css/main.css'[39m: [32m'dist/css/main.css'[39m }
+
+[1m  concat:[22m
+  { [32m'dist/css/main.css'[39m: 
+   [ [32m'{app,.tmp}/css/syntax.css'[39m,
+     [32m'{app,.tmp}/css/main.css'[39m ],
+  [32m'dist/js/scripts.js'[39m: [ [32m'app/js/main.js'[39m ] }
+
+[1m  uglify:[22m
+  { [32m'dist/js/scripts.js'[39m: [32m'dist/js/scripts.js'[39m }
+
+[1m  requirejs:[22m
+  {}
+
+[4mRunning "concat:dist/css/main.css" (concat) task[24m
+File "dist/css/main.css" created.
+
+[4mRunning "concat:dist/js/scripts.js" (concat) task[24m
+File "dist/js/scripts.js" created.
+
+[4mRunning "cssmin:dist" (cssmin) task[24m
+
+[4mRunning "cssmin:dist/css/main.css" (cssmin) task[24m
+File dist/css/main.css created.
+
+[4mRunning "uglify:dist/js/scripts.js" (uglify) task[24m
+File "dist/js/scripts.js" created.
+
+[4mRunning "imagemin:dist" (imagemin) task[24m
+
+[4mRunning "svgmin:dist" (svgmin) task[24m
+
+[4mRunning "rev:dist" (rev) task[24m
+dist/js/scripts.js [32m>> [39md41d.scripts.js
+dist/css/main.css [32m>> [39m2553.main.css
+
+[4mRunning "usemin:html" (usemin) task[24m
+
+[1mProcessing as HTML - dist/index.html[22m
+Update the HTML to reference our concat/min/revved script files
+<script src="/js/scripts.js" changed to <script src="/js/d41d.scripts.js"
+Update the HTML with the new css filenames
+<link rel="stylesheet" href="/css/main.css" changed to <link rel="stylesheet" href="/css/2553.main.css"
+Update the HTML with the new img filenames
+Update the HTML with data-main tags
+Update the HTML with the data tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+
+[1mProcessing as HTML - dist/jekyll/update/2013/08/03/yo-jekyllrb/index.html[22m
+Update the HTML to reference our concat/min/revved script files
+<script src="/js/scripts.js" changed to <script src="/js/d41d.scripts.js"
+Update the HTML with the new css filenames
+<link rel="stylesheet" href="/css/main.css" changed to <link rel="stylesheet" href="/css/2553.main.css"
+Update the HTML with the new img filenames
+Update the HTML with data-main tags
+Update the HTML with the data tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+
+[4mRunning "usemin:css" (usemin) task[24m
+
+[1mProcessing as CSS - dist/css/2553.main.css[22m
+Update the CSS with new img filenames
+
+[4mRunning "htmlmin:dist" (htmlmin) task[24m
+[33mWarning: dist/index.html
+Parse Error: < 100 :
+
+    // Initialise the sequence with an infinite sequence on integers
+    ToadSeq [1mseq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
+
+    // Take the first 100 integers.
+    [[seq take: 100]
+         // Filter out all the integers that aren't even
+         filter: ^BOOL(NSNumber *num)  {
+              return num.intValue % 2 == 0;
+        }];
+    
+    // Convert the sequence to an array
+    NSArray *arr = [seq toArray];
+
+
+Transformations can be chained as much as needed, to get the sum of the square of the first 100 integers :
+
+    // Take the first 100 integers.
+    [[[[seq take: 100]
+         // Filter out all the integers that aren't even
+         filter: ^BOOL(NSNumber *num)  {
+              return num.intValue % 2 == 0;
+        }]
+        // Get the square of these numbers 
+        map: ^id(NSNumber *num) {
+              return @(num.intValue * num.intValue);
+        }]
+        // Fold the sequence down into the sum of all the elements
+        foldl: ^id(NSNumber *accumulator, NSNumber *value) {
+              return @(accumulator.intvalue + value.intValue);
+        }];
+    
+It all works with arrays. Lets capitalize all the words of a sentence:
+
+    NSString *sentence = @"I love to boogy";
+    NSArray *arr = [sentence componentsSeparatedByString: @" "];
+    
+    // Create a sequence with the contents of our array
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators NSArraySeq: arr]];
+
+    [seq map:^NSString *(NSString *word) {
+        return [word capitalizedString];
+    }];
+    
+    NSString *newSentence = [[seq toArray] componentsJoinedByString:@" "];
+    STAssertTrue([newSentence isEqualToString: @"I Love To Boogy"], @"String should be capitalized" );
+
+
+## Generators
+
+A sequence starts with a *Generator[22m - a Block of type `^id(BOOL *end)`. On each invocation the block returns the next item in the sequence. At the end of the sequence (if there is an end) the sequence sets end to YES.
+
+A generator that returns the first five integers can be created like :
+
+    +(Generator) firstFiveInts {
+        __block int i = 1;
+    
+        return ^id(BOOL *end) {
+            if (i > 5) {
+              end = YES;
+              return nil;
+            }
+
+            return @(i++);
+        };
+    }
+
+A number of generators have been pre-defined in ToadGenerators.h :
+
+* `[ToadGenerators infiniteSequentialInts]` Creates an infinite sequence of integers.
+* `[ToadGenerators NSArraySeq: array]` Creates a sequence containing the elements of the passed in array.
+* `[ToadGenerators NSDictionarySeq: dict]` Creates a sequence containing the keys of the passed in dictionary.
+
+
+## Transformations
+
+The sequence can then be manipulated using a number of chained transformations.
+
+To create a sequence of even numbers use `map` :
+
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
+    [seq map: ^id(NSNumber *num) {
+        return @(num.intValue * 2);
+    }];
+
+Transformations can be chained. To get the sum of the first 10 square numbers using take, map and foldl:
+
+    ToadSeq *seq = [[ToadSeq alloc] initWithGenerator: [ToadGenerators infiniteSequentialInts]];
+    [[[seq take: 10]
+           map:^id(NSNumber *value) {
+             return @(value.intValue * value.intValue);
+        }]
+          foldl:^id(NSNumber *accumulator, NSNumber *value) {
+              return @(accumulator.intValue + value.intValue);
+        }];
+
+    STAssertTrue([seq hasMore], @"Should have one item");
+    STAssertEquals([[seq getNext] intValue], 385, @"We need the sum of the squares here");
+
+
+## Pulling the data
+
+Nothing happens until we actually pull the data. Applying the transformations just chain them up. Only when we pull a value from the sequence with getNext is it passed through the transformations and returned. Only as much data as is needed is passed through the transformations. There is no need (apart from in a few situations) to store intermediate arrays of data which uses up unnecessary memory.
+
+Data can be pulled using :
+
+`[seq getNext]` - Used in conjunction with `[seq hasMore]` to pull a single item from the sequence.
+
+`[seq toArray]` - Pulls the whole sequence out into an array.
+
+`[seq forEach:]` - Passes each element of the sequence into a block.
+
+
+
+
+
+
+
+  <div class="contents">
+<h1>ToadGenerators Class Reference</h1><!-- doxytag: class="ToadGenerators" -->
+<p><code>#import &lt;<a class="el" href="_toad_generators_8h_source.html">ToadGenerators.h</a>&gt;</code></p>
+
+<p><a href="class_toad_generators-members.html">List of all members.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Generator)&nbsp;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_toad_generators.html#a445101f09f6ad125671dc9b43a998731">infiniteSequentialInts</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Generator)&nbsp;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_toad_generators.html#aed53090bfae5af88dead451db8503bdb">rangeFrom:to:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Generator)&nbsp;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_toad_generators.html#a92f57c06b02b14381ddc5e2dbf9e7a50">NSArraySeq:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Generator)&nbsp;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_toad_generators.html#ae79ac968a3045ab64b2cf986300a11ac">NSDictionarySeq:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Generator)&nbsp;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_toad_generators.html#a8f2245d6bf712ff3efd5afd15fe3d6a2">Primes</a></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Generators are blocks that provide the original source of data for the transformations.</p>
+<p>Each block is of the form ^id(BOOL *end). Each time they are called they will return the next value in the sequence and will set *end to be NO. When they have run out of data they will set *end to be YES. They should also return nil - although this should not be relied on.</p>
+<p>Note that not all generators will end. For example to infiniteSequentialInts will carry on (its behaviour will be undefined at MaxInt.) It is up to you to make sure you only take as many values as you need. </p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a445101f09f6ad125671dc9b43a998731"></a><!-- doxytag: member="ToadGenerators::infiniteSequentialInts" ref="a445101f09f6ad125671dc9b43a998731" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (Generator) infiniteSequentialInts </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns an infinite sequence of ints. Will be undefined when it gets to MaxInt. Note the sequence is of objects of type NSNumber. If you need to do arithmetic with the values then use the intValue property of the values.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The generator </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a92f57c06b02b14381ddc5e2dbf9e7a50"></a><!-- doxytag: member="ToadGenerators::NSArraySeq:" ref="a92f57c06b02b14381ddc5e2dbf9e7a50" args="(NSArray *arr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (Generator) NSArraySeq: </td>
+          <td></td>
+          <td class="paramtype">(NSArray *)&nbsp;</td>
+          <td class="paramname"> <em>arr</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns a sequence of the elements of the array.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>arr</em>&nbsp;</td><td>The array containing the elements to create the sequence from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The generator </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae79ac968a3045ab64b2cf986300a11ac"></a><!-- doxytag: member="ToadGenerators::NSDictionarySeq:" ref="ae79ac968a3045ab64b2cf986300a11ac" args="(NSDictionary *dict)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (Generator) NSDictionarySeq: </td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&nbsp;</td>
+          <td class="paramname"> <em>dict</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns a sequence of the keys of the dictionary.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dict</em>&nbsp;</td><td>The dictionary</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The generator </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8f2245d6bf712ff3efd5afd15fe3d6a2"></a><!-- doxytag: member="ToadGenerators::Primes" ref="a8f2245d6bf712ff3efd5afd15fe3d6a2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (Generator) Primes </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns an infinite (subject to memory and time) sequence of prime numbers</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The generator </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aed53090bfae5af88dead451db8503bdb"></a><!-- doxytag: member="ToadGenerators::rangeFrom:to:" ref="aed53090bfae5af88dead451db8503bdb" args="(int from,[to] int to)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (Generator) rangeFrom: </td>
+          <td></td>
+          <td class="paramtype">(int)&nbsp;</td>
+          <td class="paramname"> <em>from</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">to:</td>
+          <td></td>
+          <td class="paramtype">(int)&nbsp;</td>
+          <td class="paramname"> <em>to</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns a seqence of integers between from and to.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>from</em>&nbsp;</td><td>Start the sequence from this number </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>to</em>&nbsp;</td><td>End the sequence after the number.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The generator </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/Users/stephenwakely/src/ToadSeq/ToadSeq/<a class="el" href="_toad_generators_8h_source.html">ToadGenerators.h</a></li>
+<li>/Users/stephenwakely/src/ToadSeq/ToadSeq/<a class="el" href="_toad_generators_8m.html">ToadGenerators.m</a></li>
+</ul>
+</div>
+
+  <div class="contents">
+<h1>ToadSeq Class Reference</h1><!-- doxytag: class="ToadSeq" -->
+<p><code>#import &lt;<a class="el" href="_toad_seq_8h_source.html">ToadSeq.h</a>&gt;</code></p>
+
+<p><a href="class_toad_seq-members.html">List of all members.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#abb9e89d04d274e0bbc3ce2003867cfd1">initWithGenerator:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#aaab55782588463b91afd01d2d1e10fba">hasMore</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a60fcee78582fec00ac84ff4e98d3fbed">getNext</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a275ad2ee7be406dc7473c81c43a3ada3">toArray</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a1eed4e60ab1d766e46f5fcb05502c7bb">forEach:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a168bac7db59a4258c0ff71482b395812">map:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#ab06f860e0e887d3c5bc41765cadffb66">foldl:startingWith:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a9fcb28d0f0c46612374d3c84af7179f7">foldl:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a96d8c252d5600b3d332eb1742e840cb9">filter:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a87fbdf51b377e956fd43876c98a54719">skip:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#af2248194ae8f8c68e6ebacdcaeb59074">take:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a2d0c3a111ff2abec4c3b79655b42f4b0">takeWhile:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a48bf17c1ee2a5405b1e2fd31854883bf">concatWith:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#aa82923af6664704160d989067ecd985b">reverse</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#aa62a45db18bae4e76a6fb2b396bec8a7">toArrayFromGenerator:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_toad_seq.html#a0aed6ffe762f75f003e821088db2764c">forEach:fromGenerator:</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_toad_seq.html#a1c65624fbe2d0679fcbb3fb99fee4357">withGenerator:</a></td></tr>
+<tr><td colspan="2"><h2>Properties</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Generator&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_toad_seq.html#a10f9f46debe39ebfb343a78e4a287090">generator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_toad_seq.html#a0c91d3fb95a71acd7056c8ae39befb50">cachedNext</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_toad_seq.html#a419d0bf9efccbf295adcdd740e0a6bbe">nextValueCached</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_toad_seq.html#ace70ad136bbd58dea9bf69dbd6187eb9">transforms</a></td></tr>
+</table>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a48bf17c1ee2a5405b1e2fd31854883bf"></a><!-- doxytag: member="ToadSeq::concatWith:" ref="a48bf17c1ee2a5405b1e2fd31854883bf" args="(ToadSeq *seq)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) concatWith: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_toad_seq.html">ToadSeq</a> *)&nbsp;</td>
+          <td class="paramname"> <em>seq</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Concatenate this sequence with the given one. The sequence is still accessed lazily.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>seq</em>&nbsp;</td><td>The sequence to concatenate with.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a96d8c252d5600b3d332eb1742e840cb9"></a><!-- doxytag: member="ToadSeq::filter:" ref="a96d8c252d5600b3d332eb1742e840cb9" args="(Predicate predicate)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) filter: </td>
+          <td></td>
+          <td class="paramtype">(Predicate)&nbsp;</td>
+          <td class="paramname"> <em>predicate</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Remove all the items from the sequence where the predicate returns false.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>predicate</em>&nbsp;</td><td>A block that takes an element of the sequence and returns True if the value should be in the resulting sequence</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9fcb28d0f0c46612374d3c84af7179f7"></a><!-- doxytag: member="ToadSeq::foldl:" ref="a9fcb28d0f0c46612374d3c84af7179f7" args="(Fold transform)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) foldl: </td>
+          <td></td>
+          <td class="paramtype">(Fold)&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Folds from the left of the sequence. The accumulator starts with the first item in the sequence</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>transform</em>&nbsp;</td><td>A block that takes the accumulated value and the next element of the sequence. The accumulated value should be returned from the block.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab06f860e0e887d3c5bc41765cadffb66"></a><!-- doxytag: member="ToadSeq::foldl:startingWith:" ref="ab06f860e0e887d3c5bc41765cadffb66" args="(Fold transform,[startingWith] id start)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) foldl: </td>
+          <td></td>
+          <td class="paramtype">(Fold)&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">startingWith:</td>
+          <td></td>
+          <td class="paramtype">(id)&nbsp;</td>
+          <td class="paramname"> <em>start</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Folds from the left of the sequence. The accumulator starts as the startWith parameter passed in.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>transform</em>&nbsp;</td><td>A block that takes the accumulated value and the next element of the sequence. The accumulated value should be returned from the block. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>start</em>&nbsp;</td><td>The value to initialise the accumulated value as.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1eed4e60ab1d766e46f5fcb05502c7bb"></a><!-- doxytag: member="ToadSeq::forEach:" ref="a1eed4e60ab1d766e46f5fcb05502c7bb" args="(Action action)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) forEach: </td>
+          <td></td>
+          <td class="paramtype">(Action)&nbsp;</td>
+          <td class="paramname"> <em>action</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Loops over the sequence and calls the action block, presumably for sideeffects.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>action</em>&nbsp;</td><td>Block to act on each element </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0aed6ffe762f75f003e821088db2764c"></a><!-- doxytag: member="ToadSeq::forEach:fromGenerator:" ref="a0aed6ffe762f75f003e821088db2764c" args="(Action action,[fromGenerator] Generator gen)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) forEach: </td>
+          <td></td>
+          <td class="paramtype">(Action)&nbsp;</td>
+          <td class="paramname"> <em>action</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">fromGenerator:</td>
+          <td></td>
+          <td class="paramtype">(Generator)&nbsp;</td>
+          <td class="paramname"> <em>gen</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a60fcee78582fec00ac84ff4e98d3fbed"></a><!-- doxytag: member="ToadSeq::getNext" ref="a60fcee78582fec00ac84ff4e98d3fbed" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) getNext </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the next element of the sequence.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The next element </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaab55782588463b91afd01d2d1e10fba"></a><!-- doxytag: member="ToadSeq::hasMore" ref="aaab55782588463b91afd01d2d1e10fba" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) hasMore </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Return YES if there are more elements available in the sequence.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Are the more elements available </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abb9e89d04d274e0bbc3ce2003867cfd1"></a><!-- doxytag: member="ToadSeq::initWithGenerator:" ref="abb9e89d04d274e0bbc3ce2003867cfd1" args="(Generator generator)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) initWithGenerator: </td>
+          <td></td>
+          <td class="paramtype">(Generator)&nbsp;</td>
+          <td class="paramname"> <em>generator</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Initialise the sequence with a Generator.</p>
+<p>A generator is a block of type ^id(BOOL *end).</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>generator</em>&nbsp;</td><td>A ToadGenerator - the block which pumps out the initial sequence</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="interface_toad_seq.html">ToadSeq</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a168bac7db59a4258c0ff71482b395812"></a><!-- doxytag: member="ToadSeq::map:" ref="a168bac7db59a4258c0ff71482b395812" args="(SimpleTransform transform)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) map: </td>
+          <td></td>
+          <td class="paramtype">(SimpleTransform)&nbsp;</td>
+          <td class="paramname"> <em>transform</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Transform all the elements of the sequence to the values transformed by the action.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>transform</em>&nbsp;</td><td>A block that takes one element and returns the transformed element</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa82923af6664704160d989067ecd985b"></a><!-- doxytag: member="ToadSeq::reverse" ref="aa82923af6664704160d989067ecd985b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) reverse </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Reverses the sequence. Be careful with this one as the whole sequence has to be loaded into memory in order to reverse it.</p>
+<p>Will NOT work with infinite sequences.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>&lt;return value description#&gt; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a87fbdf51b377e956fd43876c98a54719"></a><!-- doxytag: member="ToadSeq::skip:" ref="a87fbdf51b377e956fd43876c98a54719" args="(int howMany)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) skip: </td>
+          <td></td>
+          <td class="paramtype">(int)&nbsp;</td>
+          <td class="paramname"> <em>howMany</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Ignore the first n elements from the sequence</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>howMany</em>&nbsp;</td><td>How many items to ignore.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af2248194ae8f8c68e6ebacdcaeb59074"></a><!-- doxytag: member="ToadSeq::take:" ref="af2248194ae8f8c68e6ebacdcaeb59074" args="(int howMany)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) take: </td>
+          <td></td>
+          <td class="paramtype">(int)&nbsp;</td>
+          <td class="paramname"> <em>howMany</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Return only the first n elements from the sequence.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>howMany</em>&nbsp;</td><td>How many items to take from the sequence</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2d0c3a111ff2abec4c3b79655b42f4b0"></a><!-- doxytag: member="ToadSeq::takeWhile:" ref="a2d0c3a111ff2abec4c3b79655b42f4b0" args="(Predicate predicate)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) takeWhile: </td>
+          <td></td>
+          <td class="paramtype">(Predicate)&nbsp;</td>
+          <td class="paramname"> <em>predicate</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Continue returning elements from the sequence until the predicate returns false.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>predicate</em>&nbsp;</td><td>A predicate with takes an element of the sequence and returns true if we should continue taking items. When we return False, the sequence ends.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="interface_toad_seq.html">ToadSeq</a> object so further transformations can be added </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a275ad2ee7be406dc7473c81c43a3ada3"></a><!-- doxytag: member="ToadSeq::toArray" ref="a275ad2ee7be406dc7473c81c43a3ada3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) toArray </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns an array containing the results of the sequence. Do not call for infinite sequences - it will never return (but will run out of memory).</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An array of the sequence </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa62a45db18bae4e76a6fb2b396bec8a7"></a><!-- doxytag: member="ToadSeq::toArrayFromGenerator:" ref="aa62a45db18bae4e76a6fb2b396bec8a7" args="(Generator gen)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) toArrayFromGenerator: </td>
+          <td></td>
+          <td class="paramtype">(Generator)&nbsp;</td>
+          <td class="paramname"> <em>gen</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1c65624fbe2d0679fcbb3fb99fee4357"></a><!-- doxytag: member="ToadSeq::withGenerator:" ref="a1c65624fbe2d0679fcbb3fb99fee4357" args="(Generator generator)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (<a class="el" href="interface_toad_seq.html">ToadSeq</a> *) withGenerator: </td>
+          <td></td>
+          <td class="paramtype">(Generator)&nbsp;</td>
+          <td class="paramname"> <em>generator</em></td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Property Documentation</h2>
+<a class="anchor" id="a0c91d3fb95a71acd7056c8ae39befb50"></a><!-- doxytag: member="ToadSeq::cachedNext" ref="a0c91d3fb95a71acd7056c8ae39befb50" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) cachedNext<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a10f9f46debe39ebfb343a78e4a287090"></a><!-- doxytag: member="ToadSeq::generator" ref="a10f9f46debe39ebfb343a78e4a287090" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (Generator) generator<code> [read, write, copy]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a419d0bf9efccbf295adcdd740e0a6bbe"></a><!-- doxytag: member="ToadSeq::nextValueCached" ref="a419d0bf9efccbf295adcdd740e0a6bbe" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) nextValueCached<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ace70ad136bbd58dea9bf69dbd6187eb9"></a><!-- doxytag: member="ToadSeq::transforms" ref="ace70ad136bbd58dea9bf69dbd6187eb9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableArray*) transforms<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/Users/stephenwakely/src/ToadSeq/ToadSeq/<a class="el" href="_toad_seq_8h_source.html">ToadSeq.h</a></li>
+<li>/Users/stephenwakely/src/ToadSeq/ToadSeq/<a class="el" href="_toad_seq_8m.html">ToadSeq.m</a></li>
+</ul>
+</div>
+
+
+</div>
+
+
+            <div class="footer">
+              <div class="contact">
+                <p>
+                  FungusHumungus<br />
+                  <a href="mailto:fungus.humungus@gmail.com">fungus.humungus@gmail.com</a>
+                </p>
+              </div>
+              <div class="contact">
+                <p>
+                  <a href="http://github.com/FungusHumungus/">github.com/FungusHumungus</a><br />
+                  <a href="http://twitter.com/FungusHumungus/">twitter.com/FungusHumungus</a><br />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> <!-- /container -->
+
+    <script src="/js/d41d.scripts.js"></script>
+    </body>
+</html> Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
